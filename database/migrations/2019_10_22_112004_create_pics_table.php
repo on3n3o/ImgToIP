@@ -27,7 +27,7 @@ class CreatePicsTable extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('pic_id')->unsigned();
             $table->foreign('pic_id')->references('id')->on('pics');
-            $table->json('request');
+            $table->longText('request');
             $table->string('ip');
             $table->timestamps();
         });
