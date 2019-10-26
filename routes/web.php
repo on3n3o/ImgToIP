@@ -20,4 +20,4 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::resource('/pics', 'PicsController');
+Route::resource('/pic', 'PicsController')->only(['store', 'destroy']);

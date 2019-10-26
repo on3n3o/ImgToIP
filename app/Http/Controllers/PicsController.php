@@ -4,19 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Pic;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class PicsController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-
     /**
      * Store a newly created resource in storage.
      *
@@ -25,30 +16,15 @@ class PicsController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        $path = $request->file('image')->store('public');
+        
+        Pic::create([
+            'name' => $request->name,
+            'path' => $path,
+            'creator_id' => auth()->user()->id
+        ]);
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Pic  $pic
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Pic $pic)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Pic  $pic
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Pic $pic)
-    {
-        //
+        return redirect('home');
     }
 
     /**
