@@ -15,6 +15,12 @@ class PictureController extends Controller
         }
 
         $pic = Pic::where('uuid', $uuid)->first();
-        return response()->file(Storage::disk('public')->get($pic->path));
+
+        $pic->requests()->create([
+            'request' => $request->headers->all(),
+            'ip' => $request->ip()
+        ]);
+        
+        return response()->file(public_path() . '/storage/' . $pic->path);
     }
 }

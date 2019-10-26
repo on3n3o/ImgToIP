@@ -29,13 +29,23 @@
                         <tr>
                             <th>Name</th>
                             <th>Preview</th>
-                            <th>Link to tracking img<th> 
+                            <th>Link to tracking img</th> 
+                            <th>Actions</th>
                         </tr>
                         @foreach(auth()->user()->pics as $pic)
                         <tr>
-                            <th>{{$pic->name}}</th>
-                            <th><img src="{{ $pic->path }}" width="100px"></th>
-                            <th><a href="{{ config('app.url') }}/picture/{{ $pic->uuid }}">{{ config('app.url') }}/picture/{{ $pic->uuid }}</a></th>
+                            <td>{{$pic->name}}</td>
+                            <td><img src="/storage/{{ $pic->path }}" width="100px"></td>
+                            <td><a href="{{ config('app.url') }}/picture/{{ $pic->uuid }}">{{ config('app.url') }}/picture/{{ $pic->uuid }}</a></td>
+                            <td><a href="/pic/{{ $pic->id }}" class="btn btn-xs btn-primary"><i class="fa fa-search text-light"></i></a></td>
+                        </tr>
+                        <tr>
+                            <td colspan="4">
+                                <label class="label">Select this image and copy and paste into email to track:</label>
+                                <p>
+                                <img src="{{ config('app.url') }}/picture/{{ $pic->uuid }}">
+                                </p>
+                            <td>
                         </tr>
                         @endforeach
                     </table>
