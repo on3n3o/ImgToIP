@@ -69,7 +69,7 @@
         var _this = $(this);
         var id = _this.attr('data-id');
         var href = _this.attr('data-href');
-        $('#image-preview-' + id).prepend('<img src="' + href + '" width="100px">');
+        $('#image-preview-' + id).prepend('<img src="' + href + '?track=true" width="100px">');
     });
 </script>
 @endsection
