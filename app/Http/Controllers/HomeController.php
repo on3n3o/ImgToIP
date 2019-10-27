@@ -29,7 +29,7 @@ class HomeController extends Controller
         if(!auth()->user()->is_admin){
             $pics = $pics->where('creator_id', auth()->user()->id);
         }
-        $pics = $pics->get();
+        $pics = $pics->paginate(10);
 
         return view('home', compact('pics'));
     }
