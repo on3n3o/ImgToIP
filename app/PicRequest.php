@@ -9,7 +9,7 @@ class PicRequest extends Model
     protected $table = 'requests';
     
     protected $fillable = [
-        'pic_id', 'request', 'ip'
+        'pic_id', 'request', 'ip', 'ip_forwarded', 'ip_forwarded_for'
     ];
 
     protected $casts = [

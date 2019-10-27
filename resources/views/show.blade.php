@@ -21,13 +21,16 @@
                     </div>
                     <table class="table">
                         <tr>
-                            <th>IP</th>
+                            <th>IPs</th>
                             <th>Date</th>
                             <th>Request headers</th>
                         </tr>
                         @foreach($pic->requests as $request)
                             <tr>
-                                <td>{{ $request->ip }}</td>
+                                <td>{{ $request->ip }}<br>
+                                    {{ $request->ip_forwarded ?? ''}}<br>
+                                    {{ $request->ip_forwarded_for ?? ''}}
+                                </td>
                                 <td>{{ $request->created_at }}</td>
                                 <td ><textarea rows="10" cols="70">{{ var_dump($request->request) }}</textarea></td>
                             </tr>
