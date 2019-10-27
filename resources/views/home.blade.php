@@ -13,6 +13,13 @@
                             {{ session('status') }}
                         </div>
                     @endif
+                    @if ($errors->any() ?? false)
+                        @foreach($errors->all() as $error)
+                        <div class="alert alert-danger" role="alert">
+                            {{ $error }}
+                        </div>
+                        @endforeach
+                    @endif
                     <form method="POST" action="/pic" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group">
@@ -41,9 +48,10 @@
                         </tr>
                         <tr>
                             <td colspan="4">
-                                <label class="label">Select this image and copy and paste into email to track:</label>
-                                <p>
-                                <img src="{{ config('app.url') }}/picture/{{ $pic->uuid }}">
+                                <label class="label">Select this image and copy and paste into email to track: 
+                                    <button class="btn btn-xs btn-success show-image" data-id="{{ $pic->id }}" data-href="{{ config('app.url') }}/picture/{{ $pic->uuid }}">Show image</button>
+                                </label>
+                                <p id="image-preview-{{ $pic->id }}">
                                 </p>
                             <td>
                         </tr>
@@ -54,4 +62,15 @@
         </div>
     </div>
 </div>
+
+<script>
+    $('body').on('click', '.show-image', function(e){
+        e.preventDefault();
+        var _this = $(this);
+        var id = _this.attr('data-id');
+        var href = _this.attr('data-href');
+        $('#image-preview-' + id).prepend('<img src="' + href + '" width="100px">');
+    });
+</script>
 @endsection
+

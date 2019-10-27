@@ -11,8 +11,8 @@
                     <div class="row">
                         <div class="col-lg-6">
                             <b>Name:</b> {{ $pic->name }}<br>
-                            <b>Link to track:</b> <a href="{{ config('app.url') }}/picture/{{ $pic->uuid }}">{{ config('app.url') }}/picture/{{ $pic->uuid }}</a><br>
-                            <b>Link to view without tracking:</b> <a href="/storage/{{ $pic->path }}">{{ config('app.url') }}/storage/{{ $pic->path }}</a><br>
+                            <b>Link to tracking image:</b> <a href="{{ config('app.url') }}/picture/{{ $pic->uuid }}">{{ config('app.url') }}/picture/{{ $pic->uuid }}</a><br>
+                            <b>Link to view image without tracking:</b> <a href="/storage/{{ $pic->path }}">{{ config('app.url') }}/storage/{{ $pic->path }}</a><br>
                             <b>Current views with tracking:</b> {{ $pic->requests()->count() ?? 0 }}<br> 
                         </div>
                         <div class="col-lg-6">
