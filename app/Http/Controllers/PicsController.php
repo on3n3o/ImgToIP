@@ -12,7 +12,7 @@ class PicsController extends Controller
 
     public function show(Pic $pic)
     {
-        if($pic->creator_id !== auth()->user()->id){
+        if($pic->creator_id !== auth()->user()->id && !auth()->user()->is_admin){
             abort(404);
         }
         

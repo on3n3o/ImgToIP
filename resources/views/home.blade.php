@@ -39,7 +39,7 @@
                             <th>Link to tracking img</th> 
                             <th>Actions</th>
                         </tr>
-                        @foreach(auth()->user()->pics as $pic)
+                        @foreach($pics as $pic)
                         <tr>
                             <td>{{$pic->name}}</td>
                             <td><img src="/storage/{{ $pic->path }}" width="100px"></td>

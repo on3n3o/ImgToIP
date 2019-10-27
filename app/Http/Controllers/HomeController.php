@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Pic;
 
 class HomeController extends Controller
 {
@@ -23,6 +24,13 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $pics = Pic::query();
+
+        if(!auth()->user()->is_admin){
+            $pics = $pics->where('creator_id', auth()->user()->id);
+        }
+        $pics = $pics->get();
+
+        return view('home', compact('pics'));
     }
 }
