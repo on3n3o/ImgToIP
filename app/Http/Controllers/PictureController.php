@@ -21,6 +21,6 @@ class PictureController extends Controller
             'ip' => $request->ip()
         ]);
         
-        return response()->file(public_path() . '/storage/' . $pic->path);
+        return response()->file(public_path() . '/storage/' . $pic->path, ['Cache-Control' => 'no-store, no-cache, must-revalidate, post-check=0, pre-check=0']);
     }
 }

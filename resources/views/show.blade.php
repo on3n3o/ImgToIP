@@ -8,22 +8,28 @@
                 <div class="card-header">Show {{ $pic->name }}</div>
 
                 <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <b>Name:</b> {{ $pic->name }}<br>
+                            <b>Link to track:</b> <a href="{{ config('app.url') }}/picture/{{ $pic->uuid }}">{{ config('app.url') }}/picture/{{ $pic->uuid }}</a><br>
+                            <b>Link to view without tracking:</b> <a href="/storage/{{ $pic->path }}">{{ config('app.url') }}/storage/{{ $pic->path }}</a><br>
+                            <b>Current views with tracking:</b> {{ $pic->requests()->count() ?? 0 }}<br> 
                         </div>
-                    @endif
+                        <div class="col-lg-6">
+                            <img src="/storage/{{ $pic->path }}" width="200px">
+                        </div>
+                    </div>
                     <table class="table">
                         <tr>
-                            <!-- <th>Request headers</th> -->
                             <th>IP</th>
                             <th>Date</th>
+                            <th>Request headers</th>
                         </tr>
                         @foreach($pic->requests as $request)
                             <tr>
-                                <!-- <td><pre>{{ var_dump($request->request) }}</pre></td> -->
                                 <td>{{ $request->ip }}</td>
                                 <td>{{ $request->created_at }}</td>
+                                <td ><textarea rows="10" cols="70">{{ var_dump($request->request) }}</textarea></td>
                             </tr>
                         @endforeach
                     </table>
