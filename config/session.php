@@ -96,6 +96,8 @@ return [
     | list a cache store that should be used for these sessions. This value
     | must match with one of the application's configured cache "stores".
     |
+    | Affects: "apc", "dynamodb", "memcached", "redis"
+    |
     */
 
     'store' => env('SESSION_STORE', null),
@@ -166,7 +168,7 @@ return [
     |
     */
 
-    'secure' => env('SESSION_SECURE_COOKIE', false),
+    'secure' => env('SESSION_SECURE_COOKIE', null),
 
     /*
     |--------------------------------------------------------------------------
@@ -194,6 +196,6 @@ return [
     |
     */
 
-    'same_site' => null,
+    'same_site' => 'lax',
 
 ];
